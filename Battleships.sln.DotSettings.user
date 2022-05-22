@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b6ebfebc_002D3371_002D4f2d_002D9cc5_002Db1d67c91ecb2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PlaceShip_Two_Horizontally_Should_Return_True" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.PlaceShip_Two_Horizontally_Should_Return_True&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.PlaceShip_One_Horizontally_One_Vertically_Should_Return_False&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.Place_Ship_Two_Vertically_Should_Return_False&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.PlaceShip_Two_Horizontally_Should_Return_False&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.PlaceShip_One_Vertically_One_Horizontally_Should_Return_False&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.ShipTests.Creating_Ship_Should_Return_All_True_Masts&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.ShipTests.IsSunk_Healthy_Ship_Should_Return_False&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

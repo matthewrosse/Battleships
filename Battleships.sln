@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGameEngine", "BattleshipsGameEngine\BattleshipsGameEngine.csproj", "{15526260-50D4-43C8-A6B8-E147AFDE9AEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGameEngine.Tests", "BattleshipsGameEngine.Tests\BattleshipsGameEngine.Tests.csproj", "{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{15526260-50D4-43C8-A6B8-E147AFDE9AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15526260-50D4-43C8-A6B8-E147AFDE9AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15526260-50D4-43C8-A6B8-E147AFDE9AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
