@@ -5,7 +5,7 @@ namespace BattleshipsGameEngine.Entities;
 
 public class ComputerPlayer : Player
 {
-    public Queue<(byte x, byte y)> ShotsQueue;
+    public readonly Queue<(byte x, byte y)> ShotsQueue;
     public ComputerPlayer(int boardSize, int amountOfShips) : base(boardSize, amountOfShips)
     {
         Name = "Bot";
