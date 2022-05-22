@@ -124,4 +124,39 @@ public class Board
 
         return true;
     }
+
+    public BoardCellStatus MarkShot(byte x, byte y)
+    {
+        var result = _boardCells[x, y].CellStatus switch
+        {
+            BoardCellStatus.Empty => BoardCellStatus.Miss,
+            BoardCellStatus.Miss or BoardCellStatus.Hit or BoardCellStatus.Occupied => BoardCellStatus.Occupied,
+            BoardCellStatus.Present => BoardCellStatus.Hit,
+            _ => _boardCells[x, y].CellStatus
+        };
+        return result;
+    }
+
+    public Ship? ExecuteShot(byte x, byte y)
+    {
+        var ship = _boardCells[x, y].Ship;
+        if (ship is null)
+        {
+            _boardCells[x, y].CellStatus = BoardCellStatus.Miss;
+            return null;
+        }
+
+        if (ship.Direction is Direction.Horizontal && ship.X == x)
+        {
+            ship[y - ship.Y] = false;
+            _boardCells[x, y].CellStatus = BoardCellStatus.Hit;
+        }
+        else if (ship.Direction is Direction.Vertical && ship.Y == y)
+        {
+            ship[x - ship.X] = false;
+            _boardCells[x, y].CellStatus = BoardCellStatus.Hit;
+        }
+
+        return _boardCells[x, y].Ship;
+    }
 }
