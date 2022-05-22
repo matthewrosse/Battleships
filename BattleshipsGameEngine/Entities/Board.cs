@@ -16,7 +16,7 @@ public class Board
     {
         _boardCells = new BoardCell[size, size];
         _initializeBoard();
-        _cleanUpBoard();
+        CleanUpBoard();
     }
 
     private void _initializeBoard()
@@ -30,7 +30,7 @@ public class Board
         }
     }
 
-    private void _cleanUpBoard()
+    public void CleanUpBoard()
     {
         for (int i = 0; i < _boardCells.GetLength(0); i++)
         {
