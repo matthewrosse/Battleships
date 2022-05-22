@@ -58,7 +58,11 @@ namespace BattleshipsWinforms
 
         private void PlaceShipsManuallyButton_Click(object sender, EventArgs e)
         {
-
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = true;
+            ManuallyDockedShipsPictureBox.Visible = true;
+            // zmiana gracza
         }
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
@@ -68,7 +72,49 @@ namespace BattleshipsWinforms
 
         private void PlaceShipsAutomaticallyButton_Click(object sender, EventArgs e)
         {
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = true;
+        }
 
+        private void DrawGrid(Graphics graphics)
+        {
+            for (int i = 0; i < numOfCells; i++)
+            {
+                for (int j = 0; j < numOfCells; j++)
+                {
+                    switch (currentPlayer.Fleet[i, j])
+                    {
+                        case BoardCellStatus.Present:
+                            graphics.FillRectangle(new SolidBrush(Color.Green), j * cellSize, i * cellSize, cellSize, cellSize);
+                            break;
+                        case BoardCellStatus.Empty:
+                            graphics.FillRectangle(new SolidBrush(Color.Blue), j * cellSize, i * cellSize, cellSize, cellSize);
+                            break;
+                        case BoardCellStatus.Hit:
+                            graphics.FillRectangle(new SolidBrush(Color.Red), j * cellSize, i * cellSize, cellSize, cellSize);
+                            break;
+                        case BoardCellStatus.Miss:
+                            graphics.FillRectangle(new SolidBrush(Color.DarkGray), j * cellSize, i * cellSize, cellSize, cellSize);
+                            break;
+                        case BoardCellStatus.Occupied:
+                            graphics.FillRectangle(new SolidBrush(Color.Magenta), j * cellSize, i * cellSize, cellSize, cellSize);
+                            break;
+                    }
+                }
+            }
+
+        }
+        private void FillGrid(Graphics graphics)
+        {
+            using Pen pen = new Pen(Brushes.Black);
+            for (int i = 0; i <= numOfCells; i++)
+            {
+                // vertical
+                graphics.DrawLine(pen, i * cellSize, 0, i * cellSize, numOfCells * cellSize);
+                // horizontal
+                graphics.DrawLine(pen, 0, i * cellSize, numOfCells * cellSize, i * cellSize);
+            }
         }
     }
 }
