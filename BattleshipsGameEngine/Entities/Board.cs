@@ -4,40 +4,40 @@ namespace BattleshipsGameEngine.Entities;
 
 public class Board
 {
-    private readonly BoardCell[,] _boardCells;
+    public BoardCell[,] BoardCells { get; }
     
     public BoardCellStatus this[int x, int y]
     {
-        get => _boardCells[x, y].CellStatus;
-        set => _boardCells[x, y].CellStatus = value;
+        get => BoardCells[x, y].CellStatus;
+        set => BoardCells[x, y].CellStatus = value;
     }
 
     public Board(int size)
     {
-        _boardCells = new BoardCell[size, size];
+        BoardCells = new BoardCell[size, size];
         _initializeBoard();
         CleanUpBoard();
     }
 
     private void _initializeBoard()
     {
-        for (int i = 0; i < _boardCells.GetLength(0); i++)
+        for (int i = 0; i < BoardCells.GetLength(0); i++)
         {
-            for (int j = 0; j < _boardCells.GetLength(1); j++)
+            for (int j = 0; j < BoardCells.GetLength(1); j++)
             {
-                _boardCells[i, j] = new BoardCell();
+                BoardCells[i, j] = new BoardCell();
             }
         }
     }
 
     public void CleanUpBoard()
     {
-        for (int i = 0; i < _boardCells.GetLength(0); i++)
+        for (int i = 0; i < BoardCells.GetLength(0); i++)
         {
-            for (int j = 0; j < _boardCells.GetLength(1); j++)
+            for (int j = 0; j < BoardCells.GetLength(1); j++)
             {
-                _boardCells[i, j].CellStatus = BoardCellStatus.Empty;
-                _boardCells[i, j].Ship = null;
+                BoardCells[i, j].CellStatus = BoardCellStatus.Empty;
+                BoardCells[i, j].Ship = null;
             }
         }
     }
@@ -56,26 +56,26 @@ public class Board
 
         if (ship.Direction is Direction.Vertical)
         {
-            if (ship.X + ship.Size > _boardCells.GetLength(0))
+            if (ship.X + ship.Size > BoardCells.GetLength(0))
             {
                 return false;
             }
 
-            rowsCondition = ship.X + ship.Size < _boardCells.GetLength(0) ? ship.X + ship.Size : ship.X + ship.Size - 1;
-            columnsCondition = ship.Y + 1 < _boardCells.GetLength(1) ? ship.Y + 1 : ship.Y;
+            rowsCondition = ship.X + ship.Size < BoardCells.GetLength(0) ? ship.X + ship.Size : ship.X + ship.Size - 1;
+            columnsCondition = ship.Y + 1 < BoardCells.GetLength(1) ? ship.Y + 1 : ship.Y;
             mastIndex = ship.X;
             rowToUpdate = mastIndex;
             columnToUpdate = ship.Y;
         }
         else
         {
-            if (ship.Y + ship.Size > _boardCells.GetLength(1))
+            if (ship.Y + ship.Size > BoardCells.GetLength(1))
             {
                 return false;
             }
 
-            rowsCondition = ship.X + 1 < _boardCells.GetLength(0) ? ship.X + 1 : ship.X;
-            columnsCondition = ship.Y + ship.Size < _boardCells.GetLength(1)
+            rowsCondition = ship.X + 1 < BoardCells.GetLength(0) ? ship.X + 1 : ship.X;
+            columnsCondition = ship.Y + ship.Size < BoardCells.GetLength(1)
                 ? ship.Y + ship.Size
                 : ship.Y + ship.Size - 1;
             mastIndex = ship.Y;
@@ -98,8 +98,8 @@ public class Board
     {
         for (int i = 0; i < ship.Size; i++)
         {
-            _boardCells[row, column].CellStatus = BoardCellStatus.Present;
-            _boardCells[row, column].Ship = ship;
+            BoardCells[row, column].CellStatus = BoardCellStatus.Present;
+            BoardCells[row, column].Ship = ship;
             if (ship.Direction is Direction.Vertical)
             {
                 row++;
@@ -117,7 +117,7 @@ public class Board
         {
             for (int j = startingColumn; j <= endingColumn; j++)
             {
-                if (_boardCells[i, j].CellStatus is BoardCellStatus.Present)
+                if (BoardCells[i, j].CellStatus is BoardCellStatus.Present)
                     return false;
             }
         }
@@ -127,36 +127,36 @@ public class Board
 
     public BoardCellStatus MarkShot(byte x, byte y)
     {
-        var result = _boardCells[x, y].CellStatus switch
+        var result = BoardCells[x, y].CellStatus switch
         {
             BoardCellStatus.Empty => BoardCellStatus.Miss,
             BoardCellStatus.Miss or BoardCellStatus.Hit or BoardCellStatus.Occupied => BoardCellStatus.Occupied,
             BoardCellStatus.Present => BoardCellStatus.Hit,
-            _ => _boardCells[x, y].CellStatus
+            _ => BoardCells[x, y].CellStatus
         };
         return result;
     }
 
     public Ship? ExecuteShot(byte x, byte y)
     {
-        var ship = _boardCells[x, y].Ship;
+        var ship = BoardCells[x, y].Ship;
         if (ship is null)
         {
-            _boardCells[x, y].CellStatus = BoardCellStatus.Miss;
+            BoardCells[x, y].CellStatus = BoardCellStatus.Miss;
             return null;
         }
 
         if (ship.Direction is Direction.Horizontal && ship.X == x)
         {
             ship[y - ship.Y] = false;
-            _boardCells[x, y].CellStatus = BoardCellStatus.Hit;
+            BoardCells[x, y].CellStatus = BoardCellStatus.Hit;
         }
         else if (ship.Direction is Direction.Vertical && ship.Y == y)
         {
             ship[x - ship.X] = false;
-            _boardCells[x, y].CellStatus = BoardCellStatus.Hit;
+            BoardCells[x, y].CellStatus = BoardCellStatus.Hit;
         }
 
-        return _boardCells[x, y].Ship;
+        return BoardCells[x, y].Ship;
     }
 }

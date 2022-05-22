@@ -8,5 +8,7 @@
     &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.BoardTests.PlaceShip_One_Vertically_One_Horizontally_Should_Return_False&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.ShipTests.Creating_Ship_Should_Return_All_True_Masts&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.ShipTests.IsSunk_Healthy_Ship_Should_Return_False&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.HumanPlayerTests.PlaceShipManually_Should_Return_True&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7::net6.0::BattleshipsGameEngine.Tests.HumanPlayerTests.PlaceShipManually_Should_Return_False&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

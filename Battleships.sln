@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGameEngine", "BattleshipsGameEngine\BattleshipsGameEngine.csproj", "{15526260-50D4-43C8-A6B8-E147AFDE9AEE}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsGameEngine", "BattleshipsGameEngine\BattleshipsGameEngine.csproj", "{15526260-50D4-43C8-A6B8-E147AFDE9AEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsGameEngine.Tests", "BattleshipsGameEngine.Tests\BattleshipsGameEngine.Tests.csproj", "{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsGameEngine.Tests", "BattleshipsGameEngine.Tests\BattleshipsGameEngine.Tests.csproj", "{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipsConsoleApp", "BattleshipsConsoleApp\BattleshipsConsoleApp.csproj", "{B2F43B82-6593-4A72-B537-CB5B64188BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipsWinforms", "BattleshipsWinforms\BattleshipsWinforms.csproj", "{FE5473CE-D643-4C93-931A-DFFC07837E9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +25,19 @@ Global
 		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBAD1DF0-C3A8-4ACA-88D8-70FBA16A99B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F43B82-6593-4A72-B537-CB5B64188BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F43B82-6593-4A72-B537-CB5B64188BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F43B82-6593-4A72-B537-CB5B64188BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F43B82-6593-4A72-B537-CB5B64188BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE5473CE-D643-4C93-931A-DFFC07837E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE5473CE-D643-4C93-931A-DFFC07837E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE5473CE-D643-4C93-931A-DFFC07837E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE5473CE-D643-4C93-931A-DFFC07837E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A86FB634-D1EB-417C-8495-9E5E46AF56A8}
 	EndGlobalSection
 EndGlobal

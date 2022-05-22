@@ -25,6 +25,10 @@ public class ComputerPlayer : Player
                 if (cellStatus is BoardCellStatus.Occupied)
                     return null;
                 // add neighbor cells to shots queue.
+                if (cellStatus is BoardCellStatus.Hit)
+                {
+                    _checkSurroundings(shot);
+                }
                 return shot;
             }
         }
@@ -36,10 +40,22 @@ public class ComputerPlayer : Player
             cellStatus = Hits.MarkShot(xx, yy);
             if (cellStatus is BoardCellStatus.Occupied)
                 return null;
+            if (cellStatus is BoardCellStatus.Hit)
+            {
+                _checkSurroundings((xx, yy));
+            }
             return (xx, yy);
         }
 
         return null;
         // i have to test it
+    }
+
+    private void _checkSurroundings((byte x, byte y) target)
+    {
+        ShotsQueue.Enqueue(((byte)(target.x - 1), target.y));
+        ShotsQueue.Enqueue(((byte)(target.x + 1), target.y));
+        ShotsQueue.Enqueue((target.x, (byte)(target.y - 1)));
+        ShotsQueue.Enqueue((target.x, (byte)(target.y + 1)));
     }
 }
