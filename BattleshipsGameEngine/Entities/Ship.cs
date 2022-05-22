@@ -17,7 +17,7 @@ public class Ship
         set => Masts[idx] = value;
     }
 
-    public Ship(byte x, byte y, int size, Direction direction, bool[] masts)
+    public Ship(byte x, byte y, int size, Direction direction)
     {
         X = x;
         Y = y;
@@ -44,9 +44,8 @@ public class Ship
                 isSunk = false;
                 break;
             }
-
-            return isSunk;
         }
+        return isSunk;
     }
 
 }
