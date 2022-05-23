@@ -16,7 +16,11 @@ public class HumanPlayer : Player
         foreach (var ship in shipsToBePlaced)
         {
             result = Fleet.PlaceShip(ship);
-            if (result) continue;
+            if (result)
+            {
+                listOfShips.Add(ship);
+                continue;
+            }
             // clean up the board
             Fleet.CleanUpBoard();
             break;

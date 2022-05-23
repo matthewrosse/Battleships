@@ -64,6 +64,41 @@ namespace BattleshipsWinforms
 
         private void PlayerHitsPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
+            if (!(e.Button == MouseButtons.Left))
+                return;
+
+            var coords = PlayerHitsPictureBox.PointToClient(Cursor.Position);
+
+            int row = coords.Y / cellSize;
+            int col = coords.X / cellSize;
+            if (row > numOfCells - 1 || col > numOfCells - 1)
+                return;
+
+            // to delete
+            PromptLabel.Text = $"Player {currentPlayer.Name} shot [{row}, {col}]";
+
+            (byte x, byte y)? shotTuple;
+
+            shotTuple = currentPlayer.Shoot((byte)row, (byte)col);
+            if (shotTuple is null)
+            {
+                MessageBox.Show("You've chosen wrong coordinates!");
+                return;
+            }
+            currentPlayer.Hits[shotTuple.Value.x, shotTuple.Value.y] = waitingPlayer.Fleet.MarkShot(shotTuple.Value.x, shotTuple.Value.y);
+            waitingPlayer.Fleet.ExecuteShot(shotTuple.Value.x, shotTuple.Value.y);
+
+            if (waitingPlayer.AreAllShipsSunk())
+            {
+                MessageBox.Show($"{currentPlayer.Name} has won the game!");
+                Close();
+            }
+
+            HumanPlayer tmpPlayer = currentPlayer;
+            currentPlayer = waitingPlayer;
+            waitingPlayer = tmpPlayer;
+            PlayerFleetPictureBox.Invalidate();
+            PlayerHitsPictureBox.Invalidate();
 
         }
 
@@ -118,12 +153,16 @@ namespace BattleshipsWinforms
             PlaceShipsAutomaticallyButton.Visible = false;
             ConfirmShipsPlacementButton.Visible = true;
             ManuallyDockedShipsPictureBox.Visible = true;
-            // zmiana gracza raczej w metodzie nizej
         }
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
         {
             var listOfShips = listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
+            //List<Ship> listOfShips = new List<Ship>();
+            //foreach (var visualShip in listOfVisualShips)
+            //{
+            //    listOfShips.Add(new Ship((byte)visualShip.indexX, (byte)visualShip.indexY, visualShip.Length, visualShip.Direction));
+            //}
             bool result = currentPlayer.PlaceShipsManually(listOfShips);
             if (!result)
             {
