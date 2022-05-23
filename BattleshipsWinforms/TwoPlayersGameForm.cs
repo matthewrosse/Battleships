@@ -24,11 +24,10 @@ namespace BattleshipsWinforms
         readonly byte boardSize = 10;
         readonly int amountOfShips = 7;
         int _playersThatPlacedTheirShips = 0;
-        readonly List<VisualShip> _listOfVisualShips;
+         List<VisualShip> _listOfVisualShips;
         VisualShip _clickedVisualShip;
         bool _mouseClickedOnVisualShip = false;
 
-        bool _userDocksShipsManuallyMode = false;
         public TwoPlayersGameForm(GameMode gameMode, string firstPlayerName, string secondPlayerName)
         {
             InitializeComponent();
@@ -39,6 +38,11 @@ namespace BattleshipsWinforms
             _waitingPlayer = new HumanPlayer(boardSize, amountOfShips, secondPlayerName);
             PromptLabel.Visible = true;
             PromptLabel.Text = $"{_currentPlayer.Name}, dock your battleships!";
+            ResetListOfVisualShips();
+        }
+
+        private void ResetListOfVisualShips()
+        {
             _listOfVisualShips = new List<VisualShip>()
             {
                 new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 6, _cellSize, 0, 0),
@@ -74,9 +78,6 @@ namespace BattleshipsWinforms
             if (row > _numOfCells - 1 || col > _numOfCells - 1)
                 return;
 
-            // to delete
-            PromptLabel.Text = $"Player {_currentPlayer.Name} shot [{row}, {col}]";
-
             var shotTuple = _currentPlayer.Shoot((byte)row, (byte)col);
             if (shotTuple is null)
             {
@@ -93,6 +94,7 @@ namespace BattleshipsWinforms
             }
 
             (_currentPlayer, _waitingPlayer) = (_waitingPlayer, _currentPlayer);
+            PromptLabel.Text = $"{_currentPlayer.Name}, it's your turn!";
             PlayerFleetPictureBox.Invalidate();
             PlayerHitsPictureBox.Invalidate();
         }
@@ -170,6 +172,7 @@ namespace BattleshipsWinforms
             ManuallyDockedShipsNumericalPanel.Visible = false;
 
             _playersThatPlacedTheirShips++;
+            ResetListOfVisualShips();
             if (_playersThatPlacedTheirShips < 2) return;
             PromptLabel.Text = $"{_currentPlayer.Name}, it's your turn!";
             PlaceShipsManuallyButton.Visible = false;
@@ -189,7 +192,7 @@ namespace BattleshipsWinforms
             _currentPlayer.PlaceShipsRandomly();
             //ToggleShipPlacementButtons();
             (_currentPlayer, _waitingPlayer) = (_waitingPlayer, _currentPlayer);
-            PromptLabel.Text = $"{_currentPlayer.Name}, place your ships!";
+            PromptLabel.Text = $"{_currentPlayer.Name}, dock your ships!";
             _playersThatPlacedTheirShips++;
             if (_playersThatPlacedTheirShips < 2) return;
             PromptLabel.Text = $"{_currentPlayer.Name}, it's your turn!";

@@ -150,7 +150,7 @@
             // 
             // PlaceShipsManuallyButton
             // 
-            this.PlaceShipsManuallyButton.Location = new System.Drawing.Point(352, 782);
+            this.PlaceShipsManuallyButton.Location = new System.Drawing.Point(318, 781);
             this.PlaceShipsManuallyButton.Name = "PlaceShipsManuallyButton";
             this.PlaceShipsManuallyButton.Size = new System.Drawing.Size(202, 82);
             this.PlaceShipsManuallyButton.TabIndex = 3;
@@ -160,7 +160,7 @@
             // 
             // ConfirmShipsPlacementButton
             // 
-            this.ConfirmShipsPlacementButton.Location = new System.Drawing.Point(675, 782);
+            this.ConfirmShipsPlacementButton.Location = new System.Drawing.Point(641, 781);
             this.ConfirmShipsPlacementButton.Name = "ConfirmShipsPlacementButton";
             this.ConfirmShipsPlacementButton.Size = new System.Drawing.Size(202, 82);
             this.ConfirmShipsPlacementButton.TabIndex = 4;
@@ -171,7 +171,7 @@
             // 
             // PlaceShipsAutomaticallyButton
             // 
-            this.PlaceShipsAutomaticallyButton.Location = new System.Drawing.Point(1008, 782);
+            this.PlaceShipsAutomaticallyButton.Location = new System.Drawing.Point(974, 781);
             this.PlaceShipsAutomaticallyButton.Name = "PlaceShipsAutomaticallyButton";
             this.PlaceShipsAutomaticallyButton.Size = new System.Drawing.Size(202, 77);
             this.PlaceShipsAutomaticallyButton.TabIndex = 5;
@@ -182,6 +182,7 @@
             // PromptLabel
             // 
             this.PromptLabel.AutoSize = true;
+            this.PromptLabel.BackColor = System.Drawing.Color.Transparent;
             this.PromptLabel.Location = new System.Drawing.Point(689, 32);
             this.PromptLabel.Name = "PromptLabel";
             this.PromptLabel.Size = new System.Drawing.Size(0, 15);
@@ -428,11 +429,11 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(5, 573);
+            this.label30.Location = new System.Drawing.Point(2, 573);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(19, 15);
+            this.label30.Size = new System.Drawing.Size(27, 15);
             this.label30.TabIndex = 9;
-            this.label30.Text = "10";
+            this.label30.Text = "[10]";
             // 
             // label29
             // 
@@ -537,11 +538,11 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(5, 573);
+            this.label31.Location = new System.Drawing.Point(3, 573);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(19, 15);
+            this.label31.Size = new System.Drawing.Size(27, 15);
             this.label31.TabIndex = 9;
-            this.label31.Text = "10";
+            this.label31.Text = "[10]";
             // 
             // label32
             // 
@@ -646,11 +647,11 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(5, 573);
+            this.label41.Location = new System.Drawing.Point(2, 573);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(19, 15);
+            this.label41.Size = new System.Drawing.Size(27, 15);
             this.label41.TabIndex = 9;
-            this.label41.Text = "10";
+            this.label41.Text = "[10]";
             // 
             // label42
             // 

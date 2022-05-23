@@ -41,7 +41,7 @@
             // 
             // TwoPlayersGameButton
             // 
-            this.TwoPlayersGameButton.Location = new System.Drawing.Point(486, 191);
+            this.TwoPlayersGameButton.Location = new System.Drawing.Point(514, 201);
             this.TwoPlayersGameButton.Name = "TwoPlayersGameButton";
             this.TwoPlayersGameButton.Size = new System.Drawing.Size(221, 93);
             this.TwoPlayersGameButton.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // PlayWithBotButton
             // 
-            this.PlayWithBotButton.Location = new System.Drawing.Point(486, 433);
+            this.PlayWithBotButton.Location = new System.Drawing.Point(514, 443);
             this.PlayWithBotButton.Name = "PlayWithBotButton";
             this.PlayWithBotButton.Size = new System.Drawing.Size(221, 93);
             this.PlayWithBotButton.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             // FirstPlayerNameTextBox
             // 
-            this.FirstPlayerNameTextBox.Location = new System.Drawing.Point(486, 301);
+            this.FirstPlayerNameTextBox.Location = new System.Drawing.Point(514, 311);
             this.FirstPlayerNameTextBox.Name = "FirstPlayerNameTextBox";
             this.FirstPlayerNameTextBox.Size = new System.Drawing.Size(221, 23);
             this.FirstPlayerNameTextBox.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             // SecondPlayerNameTextBox
             // 
-            this.SecondPlayerNameTextBox.Location = new System.Drawing.Point(486, 368);
+            this.SecondPlayerNameTextBox.Location = new System.Drawing.Point(514, 378);
             this.SecondPlayerNameTextBox.Name = "SecondPlayerNameTextBox";
             this.SecondPlayerNameTextBox.Size = new System.Drawing.Size(221, 23);
             this.SecondPlayerNameTextBox.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // ConfirmPlayersNamesButton
             // 
-            this.ConfirmPlayersNamesButton.Location = new System.Drawing.Point(486, 597);
+            this.ConfirmPlayersNamesButton.Location = new System.Drawing.Point(514, 607);
             this.ConfirmPlayersNamesButton.Name = "ConfirmPlayersNamesButton";
             this.ConfirmPlayersNamesButton.Size = new System.Drawing.Size(221, 93);
             this.ConfirmPlayersNamesButton.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             // ConfirmPlayerNameButton
             // 
-            this.ConfirmPlayerNameButton.Location = new System.Drawing.Point(486, 417);
+            this.ConfirmPlayerNameButton.Location = new System.Drawing.Point(514, 427);
             this.ConfirmPlayerNameButton.Name = "ConfirmPlayerNameButton";
             this.ConfirmPlayerNameButton.Size = new System.Drawing.Size(221, 93);
             this.ConfirmPlayerNameButton.TabIndex = 5;
@@ -100,31 +100,34 @@
             // FirstPlayerNameLabel
             // 
             this.FirstPlayerNameLabel.AutoSize = true;
-            this.FirstPlayerNameLabel.Location = new System.Drawing.Point(548, 269);
+            this.FirstPlayerNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.FirstPlayerNameLabel.Location = new System.Drawing.Point(576, 279);
             this.FirstPlayerNameLabel.Name = "FirstPlayerNameLabel";
-            this.FirstPlayerNameLabel.Size = new System.Drawing.Size(97, 15);
+            this.FirstPlayerNameLabel.Size = new System.Drawing.Size(100, 15);
             this.FirstPlayerNameLabel.TabIndex = 6;
-            this.FirstPlayerNameLabel.Text = "First player name";
+            this.FirstPlayerNameLabel.Text = "First player name:";
             this.FirstPlayerNameLabel.Visible = false;
             // 
             // SecondPlayerNameLabel
             // 
             this.SecondPlayerNameLabel.AutoSize = true;
-            this.SecondPlayerNameLabel.Location = new System.Drawing.Point(548, 337);
+            this.SecondPlayerNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SecondPlayerNameLabel.Location = new System.Drawing.Point(576, 347);
             this.SecondPlayerNameLabel.Name = "SecondPlayerNameLabel";
-            this.SecondPlayerNameLabel.Size = new System.Drawing.Size(114, 15);
+            this.SecondPlayerNameLabel.Size = new System.Drawing.Size(117, 15);
             this.SecondPlayerNameLabel.TabIndex = 7;
-            this.SecondPlayerNameLabel.Text = "Second player name";
+            this.SecondPlayerNameLabel.Text = "Second player name:";
             this.SecondPlayerNameLabel.Visible = false;
             // 
             // PlayerNameLabel
             // 
             this.PlayerNameLabel.AutoSize = true;
-            this.PlayerNameLabel.Location = new System.Drawing.Point(559, 254);
+            this.PlayerNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.PlayerNameLabel.Location = new System.Drawing.Point(587, 264);
             this.PlayerNameLabel.Name = "PlayerNameLabel";
-            this.PlayerNameLabel.Size = new System.Drawing.Size(72, 15);
+            this.PlayerNameLabel.Size = new System.Drawing.Size(75, 15);
             this.PlayerNameLabel.TabIndex = 8;
-            this.PlayerNameLabel.Text = "Player name";
+            this.PlayerNameLabel.Text = "Player name:";
             this.PlayerNameLabel.Visible = false;
             // 
             // StartingForm
@@ -144,6 +147,8 @@
             this.Controls.Add(this.PlayWithBotButton);
             this.Controls.Add(this.TwoPlayersGameButton);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(1272, 850);
+            this.MinimumSize = new System.Drawing.Size(1272, 850);
             this.Name = "StartingForm";
             this.Text = "Menu";
             this.ResumeLayout(false);

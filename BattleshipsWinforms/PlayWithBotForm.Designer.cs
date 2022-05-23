@@ -166,7 +166,7 @@
             // 
             // ConfirmShipsPlacementButton
             // 
-            this.ConfirmShipsPlacementButton.Location = new System.Drawing.Point(616, 795);
+            this.ConfirmShipsPlacementButton.Location = new System.Drawing.Point(647, 790);
             this.ConfirmShipsPlacementButton.Name = "ConfirmShipsPlacementButton";
             this.ConfirmShipsPlacementButton.Size = new System.Drawing.Size(184, 79);
             this.ConfirmShipsPlacementButton.TabIndex = 5;
@@ -415,11 +415,11 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(5, 573);
+            this.label30.Location = new System.Drawing.Point(0, 573);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(19, 15);
+            this.label30.Size = new System.Drawing.Size(27, 15);
             this.label30.TabIndex = 9;
-            this.label30.Text = "10";
+            this.label30.Text = "[10]";
             // 
             // label29
             // 
@@ -524,11 +524,11 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(5, 573);
+            this.label31.Location = new System.Drawing.Point(0, 573);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(19, 15);
+            this.label31.Size = new System.Drawing.Size(27, 15);
             this.label31.TabIndex = 9;
-            this.label31.Text = "10";
+            this.label31.Text = "[10]";
             // 
             // label32
             // 
@@ -633,11 +633,11 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(5, 573);
+            this.label41.Location = new System.Drawing.Point(0, 573);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(19, 15);
+            this.label41.Size = new System.Drawing.Size(27, 15);
             this.label41.TabIndex = 9;
-            this.label41.Text = "10";
+            this.label41.Text = "[10]";
             // 
             // label42
             // 
