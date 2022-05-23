@@ -146,6 +146,11 @@ namespace BattleshipsWinforms
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
         {
+            if (_mouseClickedOnVisualShip)
+            {
+                MessageBox.Show("Place every ship to play!");
+                return;
+            }
             var listOfShips = _listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
             bool result = _currentPlayer.PlaceShipsManually(listOfShips);
             if (!result)
