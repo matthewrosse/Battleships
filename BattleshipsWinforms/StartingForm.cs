@@ -16,6 +16,8 @@ namespace BattleshipsWinforms
             FirstPlayerNameTextBox.Visible = true;
             SecondPlayerNameTextBox.Visible = true;
             ConfirmPlayersNamesButton.Visible = true;
+            FirstPlayerNameLabel.Visible = true;
+            SecondPlayerNameLabel.Visible = true;
         }
 
         private void PlayWithBotButton_Click(object sender, EventArgs e)
@@ -24,6 +26,7 @@ namespace BattleshipsWinforms
             PlayWithBotButton.Visible = false;
             FirstPlayerNameTextBox.Visible = true;
             ConfirmPlayerNameButton.Visible = true;
+            PlayerNameLabel.Visible = true;
         }
 
         private void ConfirmPlayerNameButton_Click(object sender, EventArgs e)

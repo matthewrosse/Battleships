@@ -134,6 +134,8 @@ namespace BattleshipsWinforms
                 visualShip.Draw(e.Graphics);
             }
             DrawGrid(e.Graphics);
+            ManuallyDockedShipsAlphabetPanel.Visible = true;
+            ManuallyDockedShipsNumericalPanel.Visible = true;
         }
 
         private void PlaceShipsManuallyButton_Click(object sender, EventArgs e)
@@ -164,6 +166,8 @@ namespace BattleshipsWinforms
             ConfirmShipsPlacementButton.Visible = false;
             PlaceShipsManuallyButton.Visible = true;
             PlaceShipsAutomaticallyButton.Visible = true;
+            ManuallyDockedShipsAlphabetPanel.Visible = false;
+            ManuallyDockedShipsNumericalPanel.Visible = false;
 
             _playersThatPlacedTheirShips++;
             if (_playersThatPlacedTheirShips < 2) return;
@@ -173,6 +177,10 @@ namespace BattleshipsWinforms
             ConfirmShipsPlacementButton.Visible = false;
             PlayerFleetPictureBox.Visible = true;
             PlayerHitsPictureBox.Visible = true;
+            PlayerFleetAlphabetPanel.Visible = true;
+            PlayerFleetNumericalPanel.Visible = true;
+            PlayerHitsAlphabetPanel.Visible = true;
+            PlayerHitsNumericalPanel.Visible = true;
         }
 
         private void PlaceShipsAutomaticallyButton_Click(object sender, EventArgs e)
@@ -190,6 +198,10 @@ namespace BattleshipsWinforms
             ConfirmShipsPlacementButton.Visible = false;
             PlayerFleetPictureBox.Visible = true;
             PlayerHitsPictureBox.Visible = true;
+            PlayerFleetAlphabetPanel.Visible = true;
+            PlayerFleetNumericalPanel.Visible = true;
+            PlayerHitsAlphabetPanel.Visible = true;
+            PlayerHitsNumericalPanel.Visible = true;
         }
 
         private void ToggleShipPlacementButtons()

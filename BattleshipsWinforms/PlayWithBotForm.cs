@@ -60,7 +60,49 @@ namespace BattleshipsWinforms
 
         private void PlayerHitsPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            // game loop
+            if (e.Button != MouseButtons.Left)
+                return;
+
+            var coords = PlayerHitsPictureBox.PointToClient(Cursor.Position);
+
+            int row = coords.Y / _cellSize;
+            int col = coords.X / _cellSize;
+            if (row > _numOfCells - 1 || col > _numOfCells - 1)
+                return;
+
+            var shotTuple = _humanPlayer.Shoot((byte)row, (byte)col);
+            if (shotTuple is null)
+            {
+                MessageBox.Show("You've chosen wrong coordinates!");
+                return;
+            }
+            _humanPlayer.Hits[shotTuple.Value.x, shotTuple.Value.y] = _computerPlayer.Fleet.MarkShot(shotTuple.Value.x, shotTuple.Value.y);
+            _computerPlayer.Fleet.ExecuteShot(shotTuple.Value.x, shotTuple.Value.y);
+
+            if (_computerPlayer.AreAllShipsSunk())
+            {
+                MessageBox.Show($"{_humanPlayer.Name} has won the game!");
+                Close();
+                return;
+            }
+
+            PlayerFleetPictureBox.Invalidate();
+            PlayerHitsPictureBox.Invalidate();
+            // koniec oddania strzalu uzytkownika
+            // teraz bot
+
+            do
+            {
+                shotTuple = _computerPlayer.Shoot((byte)row, (byte)col);
+            }
+            while (shotTuple is null);
+            _computerPlayer.Hits[shotTuple.Value.x, shotTuple.Value.y] = _humanPlayer.Fleet.MarkShot(shotTuple.Value.x, shotTuple.Value.y);
+            _humanPlayer.Fleet.ExecuteShot(shotTuple.Value.x, shotTuple.Value.y);
+            if (_humanPlayer.AreAllShipsSunk())
+            {
+                MessageBox.Show($"{_computerPlayer.Name} has won the game!");
+                Close();
+            }
         }
 
         private void ManuallyDockedShipsPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -100,6 +142,8 @@ namespace BattleshipsWinforms
                 visualShip.Draw(e.Graphics);
             }
             DrawGrid(e.Graphics);
+            ManuallyDockedShipsAlphabetPanel.Visible = true;
+            ManuallyDockedShipsNumericalPanel.Visible = true;
         }
 
         private void FillGrid(Graphics graphics, FillGridOptions fillGridOption)
@@ -165,6 +209,10 @@ namespace BattleshipsWinforms
             ConfirmShipsPlacementButton.Visible = false;
             PlayerFleetPictureBox.Visible = true;
             PlayerHitsPictureBox.Visible = true;
+            PlayerFleetAlphabetPanel.Visible = true;
+            PlayerFleetNumericalPanel.Visible = true;
+            PlayerHitsAlphabetPanel.Visible = true;
+            PlayerHitsNumericalPanel.Visible = true;
         }
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
@@ -188,6 +236,12 @@ namespace BattleshipsWinforms
             ManuallyDockedShipsPictureBox.Visible = false;
             PlayerFleetPictureBox.Visible = true;
             PlayerHitsPictureBox.Visible = true;
+            PlayerFleetAlphabetPanel.Visible = true;
+            PlayerFleetNumericalPanel.Visible = true;
+            PlayerHitsAlphabetPanel.Visible = true;
+            PlayerHitsNumericalPanel.Visible = true;
+            ManuallyDockedShipsAlphabetPanel.Visible = false;
+            ManuallyDockedShipsNumericalPanel.Visible = false;
         }
     }
 }
