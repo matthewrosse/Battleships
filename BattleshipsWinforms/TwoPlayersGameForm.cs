@@ -41,12 +41,12 @@ namespace BattleshipsWinforms
             PromptLabel.Text = $"{_currentPlayer.Name}, dock your battleships!";
             _listOfVisualShips = new List<VisualShip>()
             {
-                new VisualShip(Direction.Vertical,Color.Green, 6, _cellSize, 0, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 5, _cellSize, 1, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 4, _cellSize, 2, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 3, _cellSize, 3, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 4, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 5, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 6, _cellSize, 0, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 5, _cellSize, 1, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 4, _cellSize, 2, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 3, _cellSize, 3, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 2, _cellSize, 4, 0),
+                new VisualShip(Direction.Vertical,Color.FromArgb(138,181,225), 2, _cellSize, 5, 0),
             };
         }
 
@@ -227,10 +227,10 @@ namespace BattleshipsWinforms
                     switch (boardToPrint[i, j])
                     {
                         case BoardCellStatus.Present:
-                            graphics.FillRectangle(new SolidBrush(Color.Green), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.FromArgb(83,137, 191)), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Empty:
-                            graphics.FillRectangle(new SolidBrush(Color.LightSkyBlue), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.White), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Hit:
                             graphics.FillRectangle(new SolidBrush(Color.Red), j * _cellSize, i * _cellSize, _cellSize, _cellSize);

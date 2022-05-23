@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TwoPlayersGameForm));
             this.PlayerFleetPictureBox = new System.Windows.Forms.PictureBox();
             this.PlayerHitsPictureBox = new System.Windows.Forms.PictureBox();
             this.ManuallyDockedShipsPictureBox = new System.Windows.Forms.PictureBox();
@@ -137,6 +136,7 @@
             // 
             // ManuallyDockedShipsPictureBox
             // 
+            this.ManuallyDockedShipsPictureBox.BackColor = System.Drawing.Color.White;
             this.ManuallyDockedShipsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ManuallyDockedShipsPictureBox.Location = new System.Drawing.Point(430, 107);
             this.ManuallyDockedShipsPictureBox.Name = "ManuallyDockedShipsPictureBox";
@@ -190,6 +190,7 @@
             // 
             // PlayerFleetAlphabetPanel
             // 
+            this.PlayerFleetAlphabetPanel.BackColor = System.Drawing.Color.Transparent;
             this.PlayerFleetAlphabetPanel.Controls.Add(this.label10);
             this.PlayerFleetAlphabetPanel.Controls.Add(this.label9);
             this.PlayerFleetAlphabetPanel.Controls.Add(this.label8);
@@ -298,6 +299,7 @@
             // 
             // PlayerHitsAlphabetPanel
             // 
+            this.PlayerHitsAlphabetPanel.BackColor = System.Drawing.Color.Transparent;
             this.PlayerHitsAlphabetPanel.Controls.Add(this.label11);
             this.PlayerHitsAlphabetPanel.Controls.Add(this.label12);
             this.PlayerHitsAlphabetPanel.Controls.Add(this.label13);
@@ -406,6 +408,7 @@
             // 
             // PlayerFleetNumericalPanel
             // 
+            this.PlayerFleetNumericalPanel.BackColor = System.Drawing.Color.Transparent;
             this.PlayerFleetNumericalPanel.Controls.Add(this.label30);
             this.PlayerFleetNumericalPanel.Controls.Add(this.label29);
             this.PlayerFleetNumericalPanel.Controls.Add(this.label25);
@@ -514,6 +517,7 @@
             // 
             // PlayerHitsNumericalPanel
             // 
+            this.PlayerHitsNumericalPanel.BackColor = System.Drawing.Color.Transparent;
             this.PlayerHitsNumericalPanel.Controls.Add(this.label31);
             this.PlayerHitsNumericalPanel.Controls.Add(this.label32);
             this.PlayerHitsNumericalPanel.Controls.Add(this.label33);
@@ -622,6 +626,7 @@
             // 
             // ManuallyDockedShipsNumericalPanel
             // 
+            this.ManuallyDockedShipsNumericalPanel.BackColor = System.Drawing.Color.Transparent;
             this.ManuallyDockedShipsNumericalPanel.Controls.Add(this.label41);
             this.ManuallyDockedShipsNumericalPanel.Controls.Add(this.label42);
             this.ManuallyDockedShipsNumericalPanel.Controls.Add(this.label43);
@@ -730,6 +735,7 @@
             // 
             // ManuallyDockedShipsAlphabetPanel
             // 
+            this.ManuallyDockedShipsAlphabetPanel.BackColor = System.Drawing.Color.Transparent;
             this.ManuallyDockedShipsAlphabetPanel.Controls.Add(this.label51);
             this.ManuallyDockedShipsAlphabetPanel.Controls.Add(this.label52);
             this.ManuallyDockedShipsAlphabetPanel.Controls.Add(this.label53);
@@ -840,7 +846,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::BattleshipsWinforms.Properties.Resources.battleships_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1484, 911);
             this.Controls.Add(this.ManuallyDockedShipsAlphabetPanel);
