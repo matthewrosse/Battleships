@@ -20,7 +20,6 @@ namespace BattleshipsWinforms
 
         private void PlayWithBotButton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void ConfirmPlayersNamesButton_Click(object sender, EventArgs e)

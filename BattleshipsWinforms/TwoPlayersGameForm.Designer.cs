@@ -34,6 +34,7 @@
             this.PlaceShipsManuallyButton = new System.Windows.Forms.Button();
             this.ConfirmShipsPlacementButton = new System.Windows.Forms.Button();
             this.PlaceShipsAutomaticallyButton = new System.Windows.Forms.Button();
+            this.PromptLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerFleetPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerHitsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ManuallyDockedShipsPictureBox)).BeginInit();
@@ -102,11 +103,21 @@
             this.PlaceShipsAutomaticallyButton.UseVisualStyleBackColor = true;
             this.PlaceShipsAutomaticallyButton.Click += new System.EventHandler(this.PlaceShipsAutomaticallyButton_Click);
             // 
+            // PromptLabel
+            // 
+            this.PromptLabel.AutoSize = true;
+            this.PromptLabel.Location = new System.Drawing.Point(689, 32);
+            this.PromptLabel.Name = "PromptLabel";
+            this.PromptLabel.Size = new System.Drawing.Size(0, 15);
+            this.PromptLabel.TabIndex = 6;
+            this.PromptLabel.Visible = false;
+            // 
             // TwoPlayersGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 911);
+            this.Controls.Add(this.PromptLabel);
             this.Controls.Add(this.PlaceShipsAutomaticallyButton);
             this.Controls.Add(this.ConfirmShipsPlacementButton);
             this.Controls.Add(this.PlaceShipsManuallyButton);
@@ -121,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PlayerHitsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ManuallyDockedShipsPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -132,5 +144,6 @@
         private Button PlaceShipsManuallyButton;
         private Button ConfirmShipsPlacementButton;
         private Button PlaceShipsAutomaticallyButton;
+        private Label PromptLabel;
     }
 }
