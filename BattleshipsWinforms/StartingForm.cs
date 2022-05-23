@@ -20,12 +20,28 @@ namespace BattleshipsWinforms
 
         private void PlayWithBotButton_Click(object sender, EventArgs e)
         {
+            TwoPlayersGameButton.Visible = false;
+            PlayWithBotButton.Visible = false;
+            FirstPlayerNameTextBox.Visible = true;
+            ConfirmPlayerNameButton.Visible = true;
+        }
+
+        private void ConfirmPlayerNameButton_Click(object sender, EventArgs e)
+        {
+            var playerName = FirstPlayerNameTextBox.Text;
+
+            if (String.IsNullOrEmpty(playerName))
+            {
+                MessageBox.Show("Enter proper names.");
+                return;
+            }
+            PlayWithBotForm playWithBotForm = new PlayWithBotForm(GameMode.HumanComputer, playerName);
         }
 
         private void ConfirmPlayersNamesButton_Click(object sender, EventArgs e)
         {
-            var firstPlayerName = FirstPlayerNameTextBox.Text;
-            var secondPlayerName = SecondPlayerNameTextBox.Text;
+            var firstPlayerName = FirstPlayerNameTextBox.Text.Trim();
+            var secondPlayerName = SecondPlayerNameTextBox.Text.Trim();
             if (String.IsNullOrEmpty(firstPlayerName) || String.IsNullOrEmpty(secondPlayerName))
             {
                 MessageBox.Show("Enter proper names.");

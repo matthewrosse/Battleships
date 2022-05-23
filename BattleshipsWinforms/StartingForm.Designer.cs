@@ -34,6 +34,7 @@
             this.FirstPlayerNameTextBox = new System.Windows.Forms.TextBox();
             this.SecondPlayerNameTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmPlayersNamesButton = new System.Windows.Forms.Button();
+            this.ConfirmPlayerNameButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TwoPlayersGameButton
@@ -83,6 +84,17 @@
             this.ConfirmPlayersNamesButton.Visible = false;
             this.ConfirmPlayersNamesButton.Click += new System.EventHandler(this.ConfirmPlayersNamesButton_Click);
             // 
+            // ConfirmPlayerNameButton
+            // 
+            this.ConfirmPlayerNameButton.Location = new System.Drawing.Point(486, 417);
+            this.ConfirmPlayerNameButton.Name = "ConfirmPlayerNameButton";
+            this.ConfirmPlayerNameButton.Size = new System.Drawing.Size(221, 93);
+            this.ConfirmPlayerNameButton.TabIndex = 5;
+            this.ConfirmPlayerNameButton.Text = "Confirm";
+            this.ConfirmPlayerNameButton.UseVisualStyleBackColor = true;
+            this.ConfirmPlayerNameButton.Visible = false;
+            this.ConfirmPlayerNameButton.Click += new System.EventHandler(this.ConfirmPlayerNameButton_Click);
+            // 
             // StartingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -90,6 +102,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1256, 811);
+            this.Controls.Add(this.ConfirmPlayerNameButton);
             this.Controls.Add(this.ConfirmPlayersNamesButton);
             this.Controls.Add(this.SecondPlayerNameTextBox);
             this.Controls.Add(this.FirstPlayerNameTextBox);
@@ -109,5 +122,6 @@
         private TextBox FirstPlayerNameTextBox;
         private TextBox SecondPlayerNameTextBox;
         private Button ConfirmPlayersNamesButton;
+        private Button ConfirmPlayerNameButton;
     }
 }
