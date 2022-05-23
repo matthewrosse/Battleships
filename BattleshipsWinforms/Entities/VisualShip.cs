@@ -12,14 +12,14 @@ namespace BattleshipsWinforms.Entities
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public int indexX { get; set; }
-        public int indexY { get; set; }
+        public int IndexX { get; set; }
+        public int IndexY { get; set; }
         public Direction Direction { get; set; }
         public int Length { get; set; }
         public Color Color { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
-        private int _cellSize;
+        private readonly int _cellSize;
 
         public VisualShip(Direction direction, Color color, int length, int cellSize, int x, int y)
         {
@@ -38,8 +38,8 @@ namespace BattleshipsWinforms.Entities
             }
             X = x * _cellSize;
             Y = y * _cellSize;
-            indexX = y;
-            indexY = x;
+            IndexX = y;
+            IndexY = x;
             Color = color;
         }
 
@@ -53,8 +53,8 @@ namespace BattleshipsWinforms.Entities
         {
             X = x;
             Y = y;
-            indexX = Y / _cellSize;
-            indexY = X / _cellSize;
+            IndexX = Y / _cellSize;
+            IndexY = X / _cellSize;
         }
 
         public bool IsClicked(int x, int y)
@@ -66,15 +66,13 @@ namespace BattleshipsWinforms.Entities
 
         public void ChangeOrientation()
         {
-            int tmp = Height;
-            Height = Width;
-            Width = tmp;
+            (Height, Width) = (Width, Height);
             Direction = Direction == Direction.Vertical ? Direction.Horizontal : Direction.Vertical;
         }
 
         public Ship ToGameEngineShip()
         {
-            return new Ship((byte)indexX, (byte)indexY, Length, Direction);
+            return new Ship((byte)IndexX, (byte)IndexY, Length, Direction);
         }
 
     }

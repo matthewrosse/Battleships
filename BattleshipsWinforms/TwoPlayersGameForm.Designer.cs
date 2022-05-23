@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TwoPlayersGameForm));
             this.PlayerFleetPictureBox = new System.Windows.Forms.PictureBox();
             this.PlayerHitsPictureBox = new System.Windows.Forms.PictureBox();
             this.ManuallyDockedShipsPictureBox = new System.Windows.Forms.PictureBox();
@@ -119,6 +120,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1484, 911);
             this.Controls.Add(this.PromptLabel);
             this.Controls.Add(this.PlaceShipsAutomaticallyButton);
@@ -127,6 +130,7 @@
             this.Controls.Add(this.ManuallyDockedShipsPictureBox);
             this.Controls.Add(this.PlayerHitsPictureBox);
             this.Controls.Add(this.PlayerFleetPictureBox);
+            this.DoubleBuffered = true;
             this.MaximumSize = new System.Drawing.Size(1500, 950);
             this.MinimumSize = new System.Drawing.Size(1500, 950);
             this.Name = "TwoPlayersGameForm";

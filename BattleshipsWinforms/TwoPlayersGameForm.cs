@@ -17,36 +17,36 @@ namespace BattleshipsWinforms
     public partial class TwoPlayersGameForm : Form
     {
         GameMode _gameMode;
-        HumanPlayer currentPlayer;
-        HumanPlayer waitingPlayer;
-        int numOfCells;
-        int cellSize;
-        byte boardSize = 10;
-        int amountOfShips = 7;
-        int playersThatPlacedTheirShips = 0;
-        List<VisualShip> listOfVisualShips;
-        VisualShip clickedVisualShip;
-        bool mouseClickedOnVisualShip = false;
+        HumanPlayer _currentPlayer;
+        HumanPlayer _waitingPlayer;
+        readonly int _numOfCells;
+        readonly int _cellSize;
+        readonly byte boardSize = 10;
+        readonly int amountOfShips = 7;
+        int _playersThatPlacedTheirShips = 0;
+        readonly List<VisualShip> _listOfVisualShips;
+        VisualShip _clickedVisualShip;
+        bool _mouseClickedOnVisualShip = false;
 
-        bool userDocksShipsManuallyMode = false;
+        bool _userDocksShipsManuallyMode = false;
         public TwoPlayersGameForm(GameMode gameMode, string firstPlayerName, string secondPlayerName)
         {
             InitializeComponent();
             _gameMode = gameMode;
-            numOfCells = boardSize;
-            cellSize = PlayerHitsPictureBox.Width / numOfCells;
-            currentPlayer = new HumanPlayer(boardSize, amountOfShips, firstPlayerName);
-            waitingPlayer = new HumanPlayer(boardSize, amountOfShips, secondPlayerName);
+            _numOfCells = boardSize;
+            _cellSize = PlayerHitsPictureBox.Width / _numOfCells;
+            _currentPlayer = new HumanPlayer(boardSize, amountOfShips, firstPlayerName);
+            _waitingPlayer = new HumanPlayer(boardSize, amountOfShips, secondPlayerName);
             PromptLabel.Visible = true;
-            PromptLabel.Text = $"{currentPlayer.Name}, dock your battleships!";
-            listOfVisualShips = new List<VisualShip>()
+            PromptLabel.Text = $"{_currentPlayer.Name}, dock your battleships!";
+            _listOfVisualShips = new List<VisualShip>()
             {
-                new VisualShip(Direction.Vertical,Color.Green, 6, cellSize, 0, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 5, cellSize, 1, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 4, cellSize, 2, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 3, cellSize, 3, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 2, cellSize, 4, 0),
-                new VisualShip(Direction.Vertical,Color.Green, 2, cellSize, 5, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 6, _cellSize, 0, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 5, _cellSize, 1, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 4, _cellSize, 2, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 3, _cellSize, 3, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 4, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 5, 0),
             };
         }
 
@@ -64,83 +64,72 @@ namespace BattleshipsWinforms
 
         private void PlayerHitsPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!(e.Button == MouseButtons.Left))
+            if (e.Button != MouseButtons.Left)
                 return;
 
             var coords = PlayerHitsPictureBox.PointToClient(Cursor.Position);
 
-            int row = coords.Y / cellSize;
-            int col = coords.X / cellSize;
-            if (row > numOfCells - 1 || col > numOfCells - 1)
+            int row = coords.Y / _cellSize;
+            int col = coords.X / _cellSize;
+            if (row > _numOfCells - 1 || col > _numOfCells - 1)
                 return;
 
             // to delete
-            PromptLabel.Text = $"Player {currentPlayer.Name} shot [{row}, {col}]";
+            PromptLabel.Text = $"Player {_currentPlayer.Name} shot [{row}, {col}]";
 
-            (byte x, byte y)? shotTuple;
-
-            shotTuple = currentPlayer.Shoot((byte)row, (byte)col);
+            var shotTuple = _currentPlayer.Shoot((byte)row, (byte)col);
             if (shotTuple is null)
             {
                 MessageBox.Show("You've chosen wrong coordinates!");
                 return;
             }
-            currentPlayer.Hits[shotTuple.Value.x, shotTuple.Value.y] = waitingPlayer.Fleet.MarkShot(shotTuple.Value.x, shotTuple.Value.y);
-            waitingPlayer.Fleet.ExecuteShot(shotTuple.Value.x, shotTuple.Value.y);
+            _currentPlayer.Hits[shotTuple.Value.x, shotTuple.Value.y] = _waitingPlayer.Fleet.MarkShot(shotTuple.Value.x, shotTuple.Value.y);
+            _waitingPlayer.Fleet.ExecuteShot(shotTuple.Value.x, shotTuple.Value.y);
 
-            if (waitingPlayer.AreAllShipsSunk())
+            if (_waitingPlayer.AreAllShipsSunk())
             {
-                MessageBox.Show($"{currentPlayer.Name} has won the game!");
+                MessageBox.Show($"{_currentPlayer.Name} has won the game!");
                 Close();
             }
 
-            HumanPlayer tmpPlayer = currentPlayer;
-            currentPlayer = waitingPlayer;
-            waitingPlayer = tmpPlayer;
+            (_currentPlayer, _waitingPlayer) = (_waitingPlayer, _currentPlayer);
             PlayerFleetPictureBox.Invalidate();
             PlayerHitsPictureBox.Invalidate();
-
         }
 
         private void ManuallyDockedShipsPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (clickedVisualShip is not null)
-                    clickedVisualShip.ChangeOrientation();
+                _clickedVisualShip?.ChangeOrientation();
                 return;
             }
             var coords = ManuallyDockedShipsPictureBox.PointToClient(Cursor.Position);
-            if (mouseClickedOnVisualShip)
+            if (_mouseClickedOnVisualShip)
             {
-                clickedVisualShip.Move((coords.X / cellSize) * cellSize, (coords.Y / cellSize) * cellSize);
-                mouseClickedOnVisualShip = false;
+                _clickedVisualShip.Move((coords.X / _cellSize) * _cellSize, (coords.Y / _cellSize) * _cellSize);
+                _mouseClickedOnVisualShip = false;
                 ManuallyDockedShipsPictureBox.Invalidate();
                 return;
             }
-            foreach (var visualShip in listOfVisualShips)
+            foreach (var visualShip in _listOfVisualShips.Where(visualShip => visualShip.IsClicked(e.X, e.Y)))
             {
-                if (visualShip.IsClicked(e.X, e.Y))
-                {
-                    mouseClickedOnVisualShip = true;
-                    clickedVisualShip = visualShip;
-                    return;
-                }
+                _mouseClickedOnVisualShip = true;
+                _clickedVisualShip = visualShip;
+                return;
             }
         }
 
         private void ManuallyDockedShipsPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseClickedOnVisualShip)
-            {
-                clickedVisualShip.Move(e.X, e.Y);
-                ManuallyDockedShipsPictureBox.Invalidate();
-            }
+            if (!_mouseClickedOnVisualShip) return;
+            _clickedVisualShip.Move(e.X, e.Y);
+            ManuallyDockedShipsPictureBox.Invalidate();
         }
 
         private void ManuallyDockedShipsPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var visualShip in listOfVisualShips)
+            foreach (var visualShip in _listOfVisualShips)
             {
                 visualShip.Draw(e.Graphics);
             }
@@ -157,58 +146,45 @@ namespace BattleshipsWinforms
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
         {
-            var listOfShips = listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
-            //List<Ship> listOfShips = new List<Ship>();
-            //foreach (var visualShip in listOfVisualShips)
-            //{
-            //    listOfShips.Add(new Ship((byte)visualShip.indexX, (byte)visualShip.indexY, visualShip.Length, visualShip.Direction));
-            //}
-            bool result = currentPlayer.PlaceShipsManually(listOfShips);
+            var listOfShips = _listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
+            bool result = _currentPlayer.PlaceShipsManually(listOfShips);
             if (!result)
             {
                 MessageBox.Show("You've placed ships incorrectly, please try again!");
                 return;
             }
-            HumanPlayer tmpPlayer = currentPlayer;
-            currentPlayer = waitingPlayer;
-            waitingPlayer = tmpPlayer;
-            PromptLabel.Text = $"{currentPlayer.Name}, place your ships!";
+            (_currentPlayer, _waitingPlayer) = (_waitingPlayer, _currentPlayer);
+            PromptLabel.Text = $"{_currentPlayer.Name}, place your ships!";
             ManuallyDockedShipsPictureBox.Visible = false;
             ConfirmShipsPlacementButton.Visible = false;
             PlaceShipsManuallyButton.Visible = true;
             PlaceShipsAutomaticallyButton.Visible = true;
 
-            playersThatPlacedTheirShips++;
-            if (playersThatPlacedTheirShips >= 2)
-            {
-                PromptLabel.Text = $"{currentPlayer.Name}, it's your turn!";
-                PlaceShipsManuallyButton.Visible = false;
-                PlaceShipsAutomaticallyButton.Visible = false;
-                ConfirmShipsPlacementButton.Visible = false;
-                PlayerFleetPictureBox.Visible = true;
-                PlayerHitsPictureBox.Visible = true;
-            }
+            _playersThatPlacedTheirShips++;
+            if (_playersThatPlacedTheirShips < 2) return;
+            PromptLabel.Text = $"{_currentPlayer.Name}, it's your turn!";
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = false;
+            PlayerFleetPictureBox.Visible = true;
+            PlayerHitsPictureBox.Visible = true;
         }
 
         private void PlaceShipsAutomaticallyButton_Click(object sender, EventArgs e)
         {
             //ToggleShipPlacementButtons();
-            currentPlayer.PlaceShipsRandomly();
+            _currentPlayer.PlaceShipsRandomly();
             //ToggleShipPlacementButtons();
-            HumanPlayer tmpPlayer = currentPlayer;
-            currentPlayer = waitingPlayer;
-            waitingPlayer = tmpPlayer;
-            PromptLabel.Text = $"{currentPlayer.Name}, place your ships!";
-            playersThatPlacedTheirShips++;
-            if (playersThatPlacedTheirShips >= 2)
-            {
-                PromptLabel.Text = $"{currentPlayer.Name}, it's your turn!";
-                PlaceShipsManuallyButton.Visible = false;
-                PlaceShipsAutomaticallyButton.Visible = false;
-                ConfirmShipsPlacementButton.Visible = false;
-                PlayerFleetPictureBox.Visible = true;
-                PlayerHitsPictureBox.Visible = true;
-            }
+            (_currentPlayer, _waitingPlayer) = (_waitingPlayer, _currentPlayer);
+            PromptLabel.Text = $"{_currentPlayer.Name}, place your ships!";
+            _playersThatPlacedTheirShips++;
+            if (_playersThatPlacedTheirShips < 2) return;
+            PromptLabel.Text = $"{_currentPlayer.Name}, it's your turn!";
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = false;
+            PlayerFleetPictureBox.Visible = true;
+            PlayerHitsPictureBox.Visible = true;
         }
 
         private void ToggleShipPlacementButtons()
@@ -222,31 +198,31 @@ namespace BattleshipsWinforms
         {
             var boardToPrint = fillGridOption switch
             {
-                FillGridOptions.Fleet => currentPlayer.Fleet,
-                FillGridOptions.Hits => currentPlayer.Hits,
+                FillGridOptions.Fleet => _currentPlayer.Fleet,
+                FillGridOptions.Hits => _currentPlayer.Hits,
                 _ => throw new InvalidEnumArgumentException()
             };
 
-            for (int i = 0; i < numOfCells; i++)
+            for (int i = 0; i < _numOfCells; i++)
             {
-                for (int j = 0; j < numOfCells; j++)
+                for (int j = 0; j < _numOfCells; j++)
                 {
                     switch (boardToPrint[i, j])
                     {
                         case BoardCellStatus.Present:
-                            graphics.FillRectangle(new SolidBrush(Color.Green), j * cellSize, i * cellSize, cellSize, cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.Green), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Empty:
-                            graphics.FillRectangle(new SolidBrush(Color.Blue), j * cellSize, i * cellSize, cellSize, cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.LightSkyBlue), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Hit:
-                            graphics.FillRectangle(new SolidBrush(Color.Red), j * cellSize, i * cellSize, cellSize, cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.Red), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Miss:
-                            graphics.FillRectangle(new SolidBrush(Color.DarkGray), j * cellSize, i * cellSize, cellSize, cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.DarkGray), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                         case BoardCellStatus.Occupied:
-                            graphics.FillRectangle(new SolidBrush(Color.Magenta), j * cellSize, i * cellSize, cellSize, cellSize);
+                            graphics.FillRectangle(new SolidBrush(Color.Magenta), j * _cellSize, i * _cellSize, _cellSize, _cellSize);
                             break;
                     }
                 }
@@ -256,12 +232,12 @@ namespace BattleshipsWinforms
         private void DrawGrid(Graphics graphics)
         {
             using Pen pen = new Pen(Brushes.Black);
-            for (int i = 0; i <= numOfCells; i++)
+            for (int i = 0; i <= _numOfCells; i++)
             {
                 // vertical
-                graphics.DrawLine(pen, i * cellSize, 0, i * cellSize, numOfCells * cellSize);
+                graphics.DrawLine(pen, i * _cellSize, 0, i * _cellSize, _numOfCells * _cellSize);
                 // horizontal
-                graphics.DrawLine(pen, 0, i * cellSize, numOfCells * cellSize, i * cellSize);
+                graphics.DrawLine(pen, 0, i * _cellSize, _numOfCells * _cellSize, i * _cellSize);
             }
         }
     }
