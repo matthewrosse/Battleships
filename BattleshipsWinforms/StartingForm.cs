@@ -36,6 +36,9 @@ namespace BattleshipsWinforms
                 return;
             }
             PlayWithBotForm playWithBotForm = new PlayWithBotForm(GameMode.HumanComputer, playerName);
+            Hide();
+            playWithBotForm.ShowDialog();
+            Show();
         }
 
         private void ConfirmPlayersNamesButton_Click(object sender, EventArgs e)

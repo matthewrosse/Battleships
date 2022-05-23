@@ -43,6 +43,7 @@ namespace BattleshipsWinforms
                 new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 4, 0),
                 new VisualShip(Direction.Vertical,Color.Green, 2, _cellSize, 5, 0),
             };
+            _computerPlayer.PlaceShipsRandomly();
         }
 
         private void PlayerFleetPictureBox_Paint(object sender, PaintEventArgs e)
@@ -146,6 +147,47 @@ namespace BattleshipsWinforms
                 // horizontal
                 graphics.DrawLine(pen, 0, i * _cellSize, _numOfCells * _cellSize, i * _cellSize);
             }
+        }
+
+        private void PlaceShipsManuallyButton_Click(object sender, EventArgs e)
+        {
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = true;
+            ManuallyDockedShipsPictureBox.Visible = true;
+        }
+
+        private void PlaceShipsAutomaticallyButton_Click(object sender, EventArgs e)
+        {
+            _humanPlayer.PlaceShipsRandomly();
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = false;
+            PlayerFleetPictureBox.Visible = true;
+            PlayerHitsPictureBox.Visible = true;
+        }
+
+        private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
+        {
+            if (_mouseClickedOnVisualShip)
+            {
+                MessageBox.Show("Place every ship to play!");
+                return;
+            }
+            var listOfShips = _listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
+            bool result = _humanPlayer.PlaceShipsManually(listOfShips);
+            if (!result)
+            {
+                MessageBox.Show("You've placed ships incorrectly, please try again!");
+                return;
+            }
+
+            PlaceShipsManuallyButton.Visible = false;
+            PlaceShipsAutomaticallyButton.Visible = false;
+            ConfirmShipsPlacementButton.Visible = false;
+            ManuallyDockedShipsPictureBox.Visible = false;
+            PlayerFleetPictureBox.Visible = true;
+            PlayerHitsPictureBox.Visible = true;
         }
     }
 }

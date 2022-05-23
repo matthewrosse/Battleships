@@ -33,6 +33,7 @@
             this.PlayerFleetPictureBox = new System.Windows.Forms.PictureBox();
             this.PlayerHitsPictureBox = new System.Windows.Forms.PictureBox();
             this.ManuallyDockedShipsPictureBox = new System.Windows.Forms.PictureBox();
+            this.ConfirmShipsPlacementButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerFleetPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerHitsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ManuallyDockedShipsPictureBox)).BeginInit();
@@ -46,6 +47,7 @@
             this.PlaceShipsManuallyButton.TabIndex = 0;
             this.PlaceShipsManuallyButton.Text = "Place ships manually";
             this.PlaceShipsManuallyButton.UseVisualStyleBackColor = true;
+            this.PlaceShipsManuallyButton.Click += new System.EventHandler(this.PlaceShipsManuallyButton_Click);
             // 
             // PlaceShipsAutomaticallyButton
             // 
@@ -55,6 +57,7 @@
             this.PlaceShipsAutomaticallyButton.TabIndex = 1;
             this.PlaceShipsAutomaticallyButton.Text = "Place ships automatically";
             this.PlaceShipsAutomaticallyButton.UseVisualStyleBackColor = true;
+            this.PlaceShipsAutomaticallyButton.Click += new System.EventHandler(this.PlaceShipsAutomaticallyButton_Click);
             // 
             // PlayerFleetPictureBox
             // 
@@ -79,7 +82,7 @@
             // 
             // ManuallyDockedShipsPictureBox
             // 
-            this.ManuallyDockedShipsPictureBox.Location = new System.Drawing.Point(429, 122);
+            this.ManuallyDockedShipsPictureBox.Location = new System.Drawing.Point(444, 122);
             this.ManuallyDockedShipsPictureBox.Name = "ManuallyDockedShipsPictureBox";
             this.ManuallyDockedShipsPictureBox.Size = new System.Drawing.Size(622, 622);
             this.ManuallyDockedShipsPictureBox.TabIndex = 4;
@@ -89,11 +92,23 @@
             this.ManuallyDockedShipsPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ManuallyDockedShipsPictureBox_MouseClick);
             this.ManuallyDockedShipsPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ManuallyDockedShipsPictureBox_MouseMove);
             // 
+            // ConfirmShipsPlacementButton
+            // 
+            this.ConfirmShipsPlacementButton.Location = new System.Drawing.Point(616, 795);
+            this.ConfirmShipsPlacementButton.Name = "ConfirmShipsPlacementButton";
+            this.ConfirmShipsPlacementButton.Size = new System.Drawing.Size(184, 79);
+            this.ConfirmShipsPlacementButton.TabIndex = 5;
+            this.ConfirmShipsPlacementButton.Text = "Confirm";
+            this.ConfirmShipsPlacementButton.UseVisualStyleBackColor = true;
+            this.ConfirmShipsPlacementButton.Visible = false;
+            this.ConfirmShipsPlacementButton.Click += new System.EventHandler(this.ConfirmShipsPlacementButton_Click);
+            // 
             // PlayWithBotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 911);
+            this.Controls.Add(this.ConfirmShipsPlacementButton);
             this.Controls.Add(this.ManuallyDockedShipsPictureBox);
             this.Controls.Add(this.PlayerHitsPictureBox);
             this.Controls.Add(this.PlayerFleetPictureBox);
@@ -116,5 +131,6 @@
         private PictureBox PlayerFleetPictureBox;
         private PictureBox PlayerHitsPictureBox;
         private PictureBox ManuallyDockedShipsPictureBox;
+        private Button ConfirmShipsPlacementButton;
     }
 }
