@@ -71,6 +71,7 @@
             this.ManuallyDockedShipsPictureBox.Visible = false;
             this.ManuallyDockedShipsPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ManuallyDockedShipsPictureBox_Paint);
             this.ManuallyDockedShipsPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ManuallyDockedShipsPictureBox_MouseClick);
+            this.ManuallyDockedShipsPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ManuallyDockedShipsPictureBox_MouseMove);
             // 
             // PlaceShipsManuallyButton
             // 

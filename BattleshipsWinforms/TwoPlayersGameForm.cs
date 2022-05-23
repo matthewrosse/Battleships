@@ -1,5 +1,6 @@
 ﻿using BattleshipsGameEngine.Entities;
 using BattleshipsGameEngine.Enums;
+using BattleshipsWinforms.Entities;
 using BattleshipsWinforms.Enums;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,9 @@ namespace BattleshipsWinforms
         byte boardSize = 10;
         int amountOfShips = 7;
         int playersThatPlacedTheirShips = 0;
+        List<VisualShip> listOfVisualShips;
+        VisualShip clickedVisualShip;
+        bool mouseClickedOnVisualShip = false;
 
         bool userDocksShipsManuallyMode = false;
         public TwoPlayersGameForm(GameMode gameMode, string firstPlayerName, string secondPlayerName)
@@ -35,6 +39,15 @@ namespace BattleshipsWinforms
             waitingPlayer = new HumanPlayer(boardSize, amountOfShips, secondPlayerName);
             PromptLabel.Visible = true;
             PromptLabel.Text = $"{currentPlayer.Name}, dock your battleships!";
+            listOfVisualShips = new List<VisualShip>()
+            {
+                new VisualShip(Direction.Vertical,Color.Green, 6, cellSize, 0, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 5, cellSize, 1, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 4, cellSize, 2, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 3, cellSize, 3, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 2, cellSize, 4, 0),
+                new VisualShip(Direction.Vertical,Color.Green, 2, cellSize, 5, 0),
+            };
         }
 
         private void PlayerFleetPictureBox_Paint(object sender, PaintEventArgs e)
@@ -56,11 +69,46 @@ namespace BattleshipsWinforms
 
         private void ManuallyDockedShipsPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (clickedVisualShip is not null)
+                    clickedVisualShip.ChangeOrientation();
+                return;
+            }
+            var coords = ManuallyDockedShipsPictureBox.PointToClient(Cursor.Position);
+            if (mouseClickedOnVisualShip)
+            {
+                clickedVisualShip.Move((coords.X / cellSize) * cellSize, (coords.Y / cellSize) * cellSize);
+                mouseClickedOnVisualShip = false;
+                ManuallyDockedShipsPictureBox.Invalidate();
+                return;
+            }
+            foreach (var visualShip in listOfVisualShips)
+            {
+                if (visualShip.IsClicked(e.X, e.Y))
+                {
+                    mouseClickedOnVisualShip = true;
+                    clickedVisualShip = visualShip;
+                    return;
+                }
+            }
+        }
 
+        private void ManuallyDockedShipsPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseClickedOnVisualShip)
+            {
+                clickedVisualShip.Move(e.X, e.Y);
+                ManuallyDockedShipsPictureBox.Invalidate();
+            }
         }
 
         private void ManuallyDockedShipsPictureBox_Paint(object sender, PaintEventArgs e)
         {
+            foreach (var visualShip in listOfVisualShips)
+            {
+                visualShip.Draw(e.Graphics);
+            }
             DrawGrid(e.Graphics);
         }
 
@@ -70,7 +118,7 @@ namespace BattleshipsWinforms
             PlaceShipsAutomaticallyButton.Visible = false;
             ConfirmShipsPlacementButton.Visible = true;
             ManuallyDockedShipsPictureBox.Visible = true;
-            // zmiana gracza
+            // zmiana gracza raczej w metodzie nizej
         }
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
