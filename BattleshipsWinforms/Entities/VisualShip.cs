@@ -1,4 +1,5 @@
-﻿using BattleshipsGameEngine.Enums;
+﻿using BattleshipsGameEngine.Entities;
+using BattleshipsGameEngine.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,11 @@ namespace BattleshipsWinforms.Entities
             Height = Width;
             Width = tmp;
             Direction = Direction == Direction.Vertical ? Direction.Horizontal : Direction.Vertical;
+        }
+
+        public Ship ToGameEngineShip()
+        {
+            return new Ship((byte)indexX, (byte)indexY, Length, Direction);
         }
 
     }

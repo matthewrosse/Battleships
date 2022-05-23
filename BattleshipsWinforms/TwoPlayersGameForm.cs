@@ -123,7 +123,32 @@ namespace BattleshipsWinforms
 
         private void ConfirmShipsPlacementButton_Click(object sender, EventArgs e)
         {
+            var listOfShips = listOfVisualShips.Select(x => x.ToGameEngineShip()).ToList();
+            bool result = currentPlayer.PlaceShipsManually(listOfShips);
+            if (!result)
+            {
+                MessageBox.Show("You've placed ships incorrectly, please try again!");
+                return;
+            }
+            HumanPlayer tmpPlayer = currentPlayer;
+            currentPlayer = waitingPlayer;
+            waitingPlayer = tmpPlayer;
+            PromptLabel.Text = $"{currentPlayer.Name}, place your ships!";
+            ManuallyDockedShipsPictureBox.Visible = false;
+            ConfirmShipsPlacementButton.Visible = false;
+            PlaceShipsManuallyButton.Visible = true;
+            PlaceShipsAutomaticallyButton.Visible = true;
 
+            playersThatPlacedTheirShips++;
+            if (playersThatPlacedTheirShips >= 2)
+            {
+                PromptLabel.Text = $"{currentPlayer.Name}, it's your turn!";
+                PlaceShipsManuallyButton.Visible = false;
+                PlaceShipsAutomaticallyButton.Visible = false;
+                ConfirmShipsPlacementButton.Visible = false;
+                PlayerFleetPictureBox.Visible = true;
+                PlayerHitsPictureBox.Visible = true;
+            }
         }
 
         private void PlaceShipsAutomaticallyButton_Click(object sender, EventArgs e)

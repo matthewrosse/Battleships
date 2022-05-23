@@ -52,6 +52,7 @@
             // 
             // PlayerHitsPictureBox
             // 
+            this.PlayerHitsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PlayerHitsPictureBox.Location = new System.Drawing.Point(850, 107);
             this.PlayerHitsPictureBox.Name = "PlayerHitsPictureBox";
             this.PlayerHitsPictureBox.Size = new System.Drawing.Size(622, 622);
@@ -63,6 +64,7 @@
             // 
             // ManuallyDockedShipsPictureBox
             // 
+            this.ManuallyDockedShipsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ManuallyDockedShipsPictureBox.Location = new System.Drawing.Point(430, 107);
             this.ManuallyDockedShipsPictureBox.Name = "ManuallyDockedShipsPictureBox";
             this.ManuallyDockedShipsPictureBox.Size = new System.Drawing.Size(622, 622);
